@@ -10,6 +10,14 @@ class Writers::RegistrationsController < Devise::RegistrationsController
   # end
 
   def confirm
+    @writer = Writer.new(writer_params)
+    return if @writer.valid?
+    render :new
+  end
+
+  def back
+    @writer = Writer.new(writer_params)
+    render :new
   end
 
   # POST /resource
@@ -62,4 +70,9 @@ class Writers::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  private
+  def writer_params
+    params.require(:writer).permit(:email, :password, :password_confirmation, :last_name, :first_name, :last_name_kana, :first_name_kana, :sex, :birthdate, :occupation, :experience_year, :status, :unit_price)
+  end
 end

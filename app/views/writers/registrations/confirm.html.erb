@@ -1,1 +1,47 @@
-confirm.page
+confirm.page<br>
+
+password:<strong><%= @writer.password %></strong><br>
+password_confirmation:<strong><%= @writer.password_confirmation %></strong><br>
+email:<strong><%= @writer.email %></strong><br>
+last_name:<strong><%= @writer.last_name %></strong><br>
+first_name:<strong><%= @writer.first_name %></strong><br>
+last_name_kana:<strong><%= @writer.last_name_kana %></strong><br>
+first_name_kana:<strong><%= @writer.first_name_kana %></strong><br>
+sex:<strong><%= @writer.sex %></strong><br>
+birthdate:<strong><%= @writer.birthdate %></strong><br>
+occupation:<strong><%= @writer.occupation %></strong><br>
+experience_year:<strong><%= @writer.experience_year %></strong><br>
+status:<strong><%= @writer.status %></strong><br>
+unit_price:<strong><%= @writer.unit_price %></strong><br>
+
+
+
+<%= form_for :writer, url: new_writer_registration_path do |f| %>
+  <%= f.hidden_field :password %>
+  <%= f.hidden_field :password_confirmation %>
+  <%= f.hidden_field :email %>
+  <%= f.hidden_field :last_name %>
+  <%= f.hidden_field :first_name %>
+  <%= f.hidden_field :last_name_kana %>
+  <%= f.hidden_field :first_name_kana %>
+  <%= f.hidden_field :sex %>
+  <%= f.hidden_field :birthdate %>
+  <%= f.hidden_field :occupation %>
+  <%= f.hidden_field :experience_year %>
+  <%= f.submit '入力画面へ戻る'%>
+<% end %>
+
+<%= form_for :writer, url: writer_registration_path do |f| %>
+  <%= f.hidden_field :password %>
+  <%= f.hidden_field :password_confirmation %>
+  <%= f.hidden_field :email %>
+  <%= f.hidden_field :last_name %>
+  <%= f.hidden_field :first_name %>
+  <%= f.hidden_field :last_name_kana %>
+  <%= f.hidden_field :first_name_kana %>
+  <%= f.hidden_field :sex %>
+  <%= f.hidden_field :birthdate %>
+  <%= f.hidden_field :occupation %>
+  <%= f.hidden_field :experience_year %>
+  <%= f.submit '登録する'%>
+<% end %>
