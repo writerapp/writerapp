@@ -1,20 +1,100 @@
 <h1>Writers::Writers#show</h1>
 <p>ここのページは今だけ便宜上表示しております。</p>
 <p>今ログイン中のライターの情報は下記です。</p>
-
-<%= link_to "ログアウト", destroy_writer_session_path, method: :delete %>
-<br>
-<br>
-
+<p>未着手：エラーメッセージ, パスワード忘れ、管理者レイアウト</p>
+<div id="sign-up-box">
+  <h2>マイページ</h2>
+  <div class="row">
+    <div class="form-inline">
+      <div class="col-md-2"></div>
+      <div class="col-md-2">
+        <%= label :last_name, "お名前" %>
+      </div>
+      <div class="col-md-8">
+        <%= @writer.last_name %>
+        <%= @writer.first_name %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-inline">
+      <div class="col-md-2"></div>
+      <div class="col-md-2">
+        <%= label :last_name_kana, "フリガナ" %>
+      </div>
+      <div class="col-md-8">
+        <%= @writer.last_name_kana %>
+        <%= @writer.first_name_kana %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-inline">
+      <div class="col-md-2"></div>
+      <div class="col-md-2">
+        <%= label :email, "メールアドレス" %>
+      </div>
+      <div class="col-md-8">
+        <%= @writer.email %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-inline">
+      <div class="col-md-2"></div>
+      <div class="col-md-2">
+        <%= label :password, "パスワード" %>
+      </div>
+      <div class="col-md-8"><span style="font-style: italic; font-weight: lighter;">非表示</span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-inline">
+      <div class="col-md-2"></div>
+      <div class="col-md-2">
+        <%= label :sex, "性別" %>
+      </div>
+      <div class="col-md-8">
+        <%= @writer.sex %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-inline">
+      <div class="col-md-2"></div>
+      <div class="col-md-2">
+        <%= label :birthdate, "生年月日" %>
+      </div>
+      <div class="col-md-8">
+        <%= @writer.birthdate.to_s(:birthdate) %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-inline">
+      <div class="col-md-2"></div>
+      <div class="col-md-2">
+        <%= label :occupation, "職業" %>
+      </div>
+      <div class="col-md-8">
+        <%= @writer.occupation %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-inline">
+      <div class="col-md-2"></div>
+      <div class="col-md-2">
+        <%= label :experience_year, "ライター経験年数" %>
+      </div>
+      <div class="col-md-8">
+        <%= @writer.experience_year %>
+      </div>
+    </div>
+  </div>
+</div>
+<p>下記補足情報</p>
 writer_id:<strong><%= @writer.id %></strong><br>
-email:<strong><%= @writer.email %></strong><br>
-last_name:<strong><%= @writer.last_name %></strong><br>
-first_name:<strong><%= @writer.first_name %></strong><br>
-last_name_kana:<strong><%= @writer.last_name_kana %></strong><br>
-first_name_kana:<strong><%= @writer.first_name_kana %></strong><br>
-sex:<strong><%= @writer.sex %></strong><br>
-birthdate:<strong><%= @writer.birthdate %></strong><br>
-occupation:<strong><%= @writer.occupation %></strong><br>
-experience_year:<strong><%= @writer.experience_year %></strong><br>
 status:<strong><%= @writer.status %></strong><br>
 unit_price:<strong><%= @writer.unit_price %></strong>円<br>

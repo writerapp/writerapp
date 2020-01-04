@@ -18,5 +18,5 @@ class Writer < ApplicationRecord
   validates :birthdate, presence: { message: "生年月日を入力してください" }
   validates :occupation, presence: { message: "職業を選択してください" }
   validates :experience_year, presence: { message: "ライター経験年数を選択してください" }
-
+  validates :password, format: { with: /\A[a-zA-Z0-9]+\z/, message: 'は半角英数字で入力して下さい'}
 end

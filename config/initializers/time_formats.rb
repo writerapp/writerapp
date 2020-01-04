@@ -1,0 +1,1 @@
+Date::DATE_FORMATS[:birthdate] = "%Y年%m月%d日"
