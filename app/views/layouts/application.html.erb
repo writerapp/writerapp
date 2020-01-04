@@ -4,12 +4,27 @@
     <title>Writerapp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-    <%= yield %>
+    <header>
+      <div id="header-inner" class="clearfix">
+        <div id="header-logo">Appロゴ</div>
+        <div id="header-nav">
+          <% if request.fullpath.match?(/^\/admins\/*/) %>
+            <%= render "/layouts/admins_header" %>
+          <% else %>
+            <%= render "/layouts/writers_header" %>
+          <% end %>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <%= yield %>
+    </div>
+    <footer>
+      <p>Copyright © ysk management LLC All Rights Reserved.</p>
+    </footer>
   </body>
 </html>

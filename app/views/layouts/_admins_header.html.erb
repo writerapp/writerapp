@@ -1,0 +1,5 @@
+    <% if admin_signed_in? %>
+      <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+    <% else %>
+      <%= link_to "ライターページ", new_writer_session_path %>
+    <% end %>

@@ -1,13 +1,12 @@
 <h1>Writers::Writers#show</h1>
-<p>Find me in app/views/writers/writers/show.html.erb</p>
+<p>ここのページは今だけ便宜上表示しております。</p>
+<p>今ログイン中のライターの情報は下記です。</p>
 
 <%= link_to "ログアウト", destroy_writer_session_path, method: :delete %>
 <br>
 <br>
 
 writer_id:<strong><%= @writer.id %></strong><br>
-password:<strong><%= @writer.password %></strong><br>
-password_confirmation:<strong><%= @writer.password_confirmation %></strong><br>
 email:<strong><%= @writer.email %></strong><br>
 last_name:<strong><%= @writer.last_name %></strong><br>
 first_name:<strong><%= @writer.first_name %></strong><br>
@@ -18,4 +17,4 @@ birthdate:<strong><%= @writer.birthdate %></strong><br>
 occupation:<strong><%= @writer.occupation %></strong><br>
 experience_year:<strong><%= @writer.experience_year %></strong><br>
 status:<strong><%= @writer.status %></strong><br>
-unit_price:<strong><%= @writer.unit_price %></strong><br>
+unit_price:<strong><%= @writer.unit_price %></strong>円<br>
