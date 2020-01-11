@@ -9,8 +9,8 @@
           <%= f.label :last_name, "お名前", class: "label-padding-top" %>
         </div>
         <div class="col-md-8">
-          <%= f.text_field :last_name, autofocus: true, class: "form-control" %>
-          <%= f.text_field :first_name, class: "form-control" %>
+          <%= f.text_field :last_name, autofocus: true, class: "form-control", placeholder: "姓" %>
+          <%= f.text_field :first_name, class: "form-control", placeholder: "名" %>
         </div>
       </div>
     </div>
@@ -21,8 +21,8 @@
           <%= f.label :last_name_kana, "フリガナ", class: "label-padding-top" %>
         </div>
         <div class="col-md-8">
-          <%= f.text_field :last_name_kana, class: "form-control" %>
-          <%= f.text_field :first_name_kana, class: "form-control" %>
+          <%= f.text_field :last_name_kana, class: "form-control", placeholder: "セイ" %>
+          <%= f.text_field :first_name_kana, class: "form-control", placeholder: "メイ" %>
         </div>
       </div>
     </div>
