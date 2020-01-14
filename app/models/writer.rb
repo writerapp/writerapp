@@ -4,6 +4,8 @@ class Writer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :articles
+
   enum sex: { 男: 0, 女: 1, その他: 2}, _suffix: true
   # enum表記方法は、上記と下記どちらでも同じ
   enum occupation: [:会社員, :フリーター, :専業主婦または主夫, :その他], _suffix: true
