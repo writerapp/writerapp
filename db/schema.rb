@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_01_034414) do
+ActiveRecord::Schema.define(version: 2020_01_14_024437) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,6 +22,59 @@ ActiveRecord::Schema.define(version: 2020_01_01_034414) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "articles", force: :cascade do |t|
+    t.integer "writer_id"
+    t.string "keyword_1", null: false
+    t.string "keyword_2", null: false
+    t.string "keyword_3"
+    t.integer "status", default: 0, null: false
+    t.string "title"
+    t.text "reference_1"
+    t.text "reference_2"
+    t.text "reference_3"
+    t.text "reference_4"
+    t.text "reference_5"
+    t.float "unit_price", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["writer_id"], name: "index_articles_on_writer_id"
+  end
+
+  create_table "feedbacks", force: :cascade do |t|
+    t.integer "article_id"
+    t.text "body", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_feedbacks_on_article_id"
+  end
+
+  create_table "headings", force: :cascade do |t|
+    t.integer "article_id"
+    t.string "title"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_headings_on_article_id"
+  end
+
+  create_table "subheadings", force: :cascade do |t|
+    t.integer "heading_id"
+    t.string "title"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["heading_id"], name: "index_subheadings_on_heading_id"
+  end
+
+  create_table "subsubheadings", force: :cascade do |t|
+    t.integer "subheading_id"
+    t.string "title"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subheading_id"], name: "index_subsubheadings_on_subheading_id"
   end
 
   create_table "writers", force: :cascade do |t|
