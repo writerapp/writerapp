@@ -2,22 +2,22 @@ Rails.application.routes.draw do
 
   # 記事/キーワード機能
   namespace :writers do
-    resources :articles, except: [:destroy, :new, :edit]
     get 'articles/:id/edit', to: 'articles#edit', as: 'edit_article'
-    get 'keywords', as: 'keywords'
+    get 'articles/keywords', to: 'articles#keywords', as: 'keywords'
     patch 'articles/:id/apply', to: 'articles#apply', as: 'apply_article'
     get 'articles/:id/headings/edit', to: 'articles#edit_headings', as: 'edit_headings'
     patch 'articles/:id/headings', to: 'articles#update_headings', as: 'headings'
     patch 'articles/:id/headings/apply', to: 'articles#apply_headings', as: 'apply_headings'
+    resources :articles, except: [:destroy, :new, :edit]
   end
 
   namespace :admins do
-    resources :articles, except: [:create, :new, :edit]
     get 'articles/:id/edit', to: 'articles#edit', as: 'edit_article'
     patch 'articles/:id/approve', to: 'articles#approve', as: 'approve_article'
     get 'articles/:id/headings/edit', to: 'articles#edit_headings', as: 'edit_headings'
     patch 'articles/:id/headings', to: 'articles#update_headings', as: 'headings'
     patch 'articles/:id/headings/approve', to: 'articles#approve_headings', as: 'approve_headings'
+    resources :articles, except: [:create, :new, :edit]
   end
 
   # 認証機能
