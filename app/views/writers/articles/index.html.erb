@@ -1,2 +1,48 @@
 <h1>Writers::Articles#index</h1>
 <p>Find me in app/views/writers/articles/index.html.erb</p>
+
+
+<%= form_for(@article, url: writers_articles_path) do |f| %>
+<%= f.text_field :keyword_3, placeholder: "keyword_3" %>
+<%= f.submit "新規記事作成" %>
+<% end %>
+
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>記事ID</th>
+			<th>ライターID</th>
+			<th>キーワード1</th>
+			<th>キーワード2</th>
+			<th>キーワード3</th>
+			<th>ステータス</th>
+			<th>タイトル</th>
+			<th>URL1</th>
+			<th>URL2</th>
+			<th>URL3</th>
+			<th>URL4</th>
+			<th>URL5</th>
+			<th>記事単価</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @articles.each do |article| %>
+		<tr>
+			<th><%= article.id %></th>
+			<td><%= article.writer_id %></td>
+			<td><%= article.keyword_1 %></td>
+			<td><%= article.keyword_2 %></td>
+			<td><%= article.keyword_3 %></td>
+			<td><%= article.status %></td>
+			<td><%= article.title %></td>
+			<td><%= article.reference_1 %></td>
+			<td><%= article.reference_2 %></td>
+			<td><%= article.reference_3 %></td>
+			<td><%= article.reference_4 %></td>
+			<td><%= article.reference_5 %></td>
+			<td><%= article.unit_price %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
