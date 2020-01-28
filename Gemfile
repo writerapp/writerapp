@@ -74,3 +74,4 @@ gem 'pry-byebug', group: :development
 gem 'cocoon'
 gem 'ransack'
 gem 'google_drive'
+gem 'enum_help'

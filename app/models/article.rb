@@ -4,7 +4,7 @@ class Article < ApplicationRecord
   accepts_nested_attributes_for :headings, allow_destroy: true
   has_one :feedback, dependent: :destroy
 
-  enum status: [:見出し作成中, :見出し申請中, :記事執筆中, :納品申請中, :納品完了]
+  enum status: {edit_headings: 0, apply_headings: 1, edit: 2, apply: 3, complete: 4}
   validates :title, length: { maximum: 35, message: 'は35文字以内にしてください' }
 
 end

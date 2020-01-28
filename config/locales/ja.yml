@@ -204,4 +204,13 @@ ja:
       default: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
+      middle: "%Y年%m月%d日(%a) %H時%M分"
     pm: 午後
+  enums:
+    article:
+      status:
+        edit_headings: 見出し作成中
+        apply_headings: 見出し申請中
+        edit: 記事執筆中
+        apply: 納品申請中
+        complete: 納品完了

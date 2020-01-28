@@ -1,5 +1,6 @@
-<h1>Writers::Articles#index</h1>
-<p>Find me in app/views/writers/articles/index.html.erb</p>
+<h1>記事一覧</h1>
+<p>ライターID：<%= current_writer.id %></p>
+<p><%= current_writer.last_name %> <%= current_writer.first_name %>様</p>
 
 
 <%= form_for(@article, url: writers_articles_path) do |f| %>
@@ -7,41 +8,45 @@
 <%= f.submit "新規記事作成" %>
 <% end %>
 
+<%= search_form_for @q, url: writers_articles_path do |f| %>
+<%= f.select :status_eq, Article.statuses.map {|k, v| [Article.statuses_i18n[k], v]}, include_blank: '選択してください' %>
+<%= f.submit "さがす" %>
+  <% end %>
 
 <table class="table">
-	<thead>
-		<tr>
-			<th>記事ID</th>
-			<th>ライターID</th>
-			<th>キーワード1</th>
-			<th>キーワード2</th>
-			<th>キーワード3</th>
-			<th>ステータス</th>
-			<th>タイトル</th>
-			<th>URL1</th>
-			<th>URL2</th>
-			<th>URL3</th>
-			<th>URL4</th>
-			<th>URL5</th>
-			<th>記事単価</th>
-		</tr>
+  <thead>
+  	<tr>
+  	  <th>ID</th>
+  	  <th>ライターID</th>
+	  	<th>キーワード</th>
+	  	<th>ステータス</th>
+	  	<th>受注日</th>
+	  	<th>更新日</th>
+	  	<th></th>
+	  </tr>
 	</thead>
 	<tbody>
 		<% @articles.each do |article| %>
 		<tr>
-			<th><%= article.id %></th>
+			<td><%= article.id %></td>
 			<td><%= article.writer_id %></td>
-			<td><%= article.keyword_1 %></td>
-			<td><%= article.keyword_2 %></td>
-			<td><%= article.keyword_3 %></td>
-			<td><%= article.status %></td>
-			<td><%= article.title %></td>
-			<td><%= article.reference_1 %></td>
-			<td><%= article.reference_2 %></td>
-			<td><%= article.reference_3 %></td>
-			<td><%= article.reference_4 %></td>
-			<td><%= article.reference_5 %></td>
-			<td><%= article.unit_price %></td>
+			<td>
+				<%= article.keyword_1 %>
+				- <%= article.keyword_2 %>
+			  <% if article.keyword_3.present? %>
+			  - <%= article.keyword_3 %>
+			  <% end %>
+			 </td>
+			<td><%= article.status_i18n %></td>
+			<td><%= l article.created_at, format: :middle %></td>
+			<td><%= l article.updated_at, format: :middle %></td>
+			<td>
+				<% if article.status == 'edit_headings' %>
+				<%= link_to "見出しを執筆", writers_edit_headings_path(article), class: "btn btn-primary" %>
+				<% elsif article.status == 'edit' %>
+				<%= link_to "本文を執筆", writers_edit_article_path(article), class: "btn btn-success" %>
+				<% end %>
+			</td>
 		</tr>
 		<% end %>
 	</tbody>

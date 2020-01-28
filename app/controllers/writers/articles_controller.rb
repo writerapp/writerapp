@@ -1,4 +1,6 @@
 class Writers::ArticlesController < ApplicationController
+  before_action :authenticate_writer!
+
   #def keywords
   #end
 
@@ -15,6 +17,11 @@ class Writers::ArticlesController < ApplicationController
   def index
     @article = Article.new #削除予定
     @articles = Article.where(writer_id: current_writer.id)
+    @q = Article.ransack(params[:q])
+    if params[:q].present?
+      @articles = @q.result(distinct: true).where(writer_id: current_writer.id)
+      render :index
+    end
   end
 
   #def show
