@@ -31,20 +31,22 @@
 			<td><%= article.id %></td>
 			<td><%= article.writer_id %></td>
 			<td>
-				<%= article.keyword_1 %>
-				- <%= article.keyword_2 %>
-			  <% if article.keyword_3.present? %>
-			  - <%= article.keyword_3 %>
+				<%= link_to writers_article_path(article) do %>
+					<%= article.keyword_1 %>
+					- <%= article.keyword_2 %>
+			  	<% if article.keyword_3.present? %>
+			  	- <%= article.keyword_3 %>
+			  	<% end %>
 			  <% end %>
 			 </td>
 			<td><%= article.status_i18n %></td>
 			<td><%= l article.created_at, format: :middle %></td>
 			<td><%= l article.updated_at, format: :middle %></td>
 			<td>
-				<% if article.status == 'edit_headings' %>
-				<%= link_to "見出しを執筆", writers_edit_headings_path(article), class: "btn btn-primary" %>
+				<% if article.status == 'edit_heading' %>
+				<%= link_to "見出しを執筆", writers_edit_heading_path(article), class: "btn btn-primary" %>
 				<% elsif article.status == 'edit' %>
-				<%= link_to "本文を執筆", writers_edit_article_path(article), class: "btn btn-success" %>
+				<%= link_to "本文を執筆", writers_edit_article_path(article), class: "btn btn-primary" %>
 				<% end %>
 			</td>
 		</tr>

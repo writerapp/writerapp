@@ -5,18 +5,18 @@ Rails.application.routes.draw do
     get 'articles/:id/edit', to: 'articles#edit', as: 'edit_article'
     get 'articles/keywords', to: 'articles#keywords', as: 'keywords'
     patch 'articles/:id/apply', to: 'articles#apply', as: 'apply_article'
-    get 'articles/:id/headings/edit', to: 'articles#edit_headings', as: 'edit_headings'
-    patch 'articles/:id/headings', to: 'articles#update_headings', as: 'headings'
-    patch 'articles/:id/headings/apply', to: 'articles#apply_headings', as: 'apply_headings'
+    get 'articles/:id/heading/edit', to: 'articles#edit_heading', as: 'edit_heading'
+    patch 'articles/:id/heading', to: 'articles#update_heading', as: 'heading'
+    patch 'articles/:id/heading/apply', to: 'articles#apply_heading', as: 'apply_heading'
     resources :articles, except: [:destroy, :new, :edit]
   end
 
   namespace :admins do
     get 'articles/:id/edit', to: 'articles#edit', as: 'edit_article'
     patch 'articles/:id/approve', to: 'articles#approve', as: 'approve_article'
-    get 'articles/:id/headings/edit', to: 'articles#edit_headings', as: 'edit_headings'
-    patch 'articles/:id/headings', to: 'articles#update_headings', as: 'headings'
-    patch 'articles/:id/headings/approve', to: 'articles#approve_headings', as: 'approve_headings'
+    get 'articles/:id/heading/edit', to: 'articles#edit_heading', as: 'edit_heading'
+    patch 'articles/:id/heading', to: 'articles#update_heading', as: 'heading'
+    patch 'articles/:id/heading/approve', to: 'articles#approve_heading', as: 'approve_heading'
     resources :articles, except: [:create, :new, :edit]
   end
 

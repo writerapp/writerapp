@@ -5,7 +5,7 @@ class Admins::ArticlesController < ApplicationController
   def show
   end
 
-  def edit_headings
+  def edit_heading
   end
 
   def edit

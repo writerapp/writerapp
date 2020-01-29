@@ -24,11 +24,20 @@ class Writers::ArticlesController < ApplicationController
     end
   end
 
-  #def show
-  #end
+  def show
+    @article = Article.find(params[:id])
+  end
 
-  #def edit_headings
-  #end
+  def edit_heading
+    @article = Article.find(params[:id])
+  end
+
+  def update
+    article = Article.find(params[:id])
+    article.update(article_params)
+    redirect_to writers_article_path(article.id)
+  end
+
 
   #def edit
   #end
@@ -36,6 +45,10 @@ class Writers::ArticlesController < ApplicationController
 
   private
   def article_params
-    params.require(:article).permit(:writer_id, :keyword_1, :keyword_2, :keyword_3, :status, :title, :reference_1, :reference_2, :reference_3, :reference_4, :reference_5, :unit_price)
+    params.require(:article).permit(:writer_id, :keyword_1, :keyword_2, :keyword_3, :status, :title, :reference_1, :reference_2, :reference_3, :reference_4, :reference_5, :unit_price,
+      headings_attributes: [:id, :title, :body, :_destroy,
+        subheadings_attributes: [:id, :title, :body, :_destroy,
+          subsubheadings_attributes: [:id, :title, :body, :_destroy]
+        ]])
   end
 end

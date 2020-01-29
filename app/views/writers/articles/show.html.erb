@@ -1,2 +1,71 @@
-<h1>Writers::Articles#show</h1>
-<p>Find me in app/views/writers/articles/show.html.erb</p>
+<h1>記事詳細ページ</h1>
+<p><%= current_writer.last_name %> <%= current_writer.first_name %>様</p>
+<%= @article.keyword_1 %>
+- <%= @article.keyword_2 %>
+<% if @article.keyword_3.present? %>
+- <%= @article.keyword_3 %>
+<% end %>
+
+<br>
+<%= @article.status_i18n %>
+
+<br>
+参考URL:
+<br>1- <%= @article.reference_1 %>
+<br>2- <%= @article.reference_2 %>
+<br>3- <%= @article.reference_3 %>
+<br>4- <%= @article.reference_4 %>
+<br>5- <%= @article.reference_5 %>
+<br>
+タイトル：<%= @article.title %>
+
+
+<br>
+目次：<br>
+<% if @article.headings.present? %>
+	<% @article.headings.each do |heading| %>
+		・<%= heading.title %><br>
+		<% heading.subheadings.each do |subheading| %>
+		  - <%= subheading.title %><br>
+		  <% subheading.subsubheadings.each do |subsubheading| %>
+		    - - <%= subsubheading.title %><br>
+		  <% end %>
+		<% end %>
+	<% end %>
+	<br>
+	<% @article.headings.each do |heading| %>
+		大見出し：<%= heading.title %><br>
+		<%= heading.body %><br>
+		<% heading.subheadings.each do |subheading| %>
+		  中見出し：<%= subheading.title %><br>
+		  <%= subheading.body %><br>
+		  <% subheading.subsubheadings.each do |subsubheading| %>
+		    小見出し：<%= subsubheading.title %><br>
+		    <%= subsubheading.body %><br>
+		  <% end %>
+		<% end %>
+	<% end %>
+<% else %>
+	<p>見出しはありません</p>
+<% end %>
+
+
+
+
+
+フィードバック：
+<% if @article.feedback.present? %>
+  <%= @article.feedback.body %>
+<% else %>
+  <p>フィードバックはありません</p>
+<% end %>
+
+<br>
+<% if @article.status == 'edit_heading' %>
+	<%= link_to "見出しを執筆", writers_edit_heading_path(@article), class: "btn btn-primary" %>
+	<%= link_to "見出しを申請", writers_apply_heading_path(@article), method: :patch, class: "btn btn-success" %>
+<% elsif @article.status == 'edit' %>
+	<%= link_to "本文を執筆", writers_edit_article_path(@article), class: "btn btn-primary" %>
+	<%= link_to "本文を申請", writers_apply_article_path(@article), method: :patch, class: "btn btn-success" %>
+<% end %>
+

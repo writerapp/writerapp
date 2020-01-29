@@ -1,0 +1,47 @@
+<h1>見出し編集ページ</h1>
+<p><%= current_writer.last_name %> <%= current_writer.first_name %>様</p>
+<%= @article.keyword_1 %>
+- <%= @article.keyword_2 %>
+<% if @article.keyword_3.present? %>
+- <%= @article.keyword_3 %>
+<% end %>
+
+<%= form_for(@article, url: writers_article_path(@article)) do |f| %>
+<br>
+参考URL:
+<br>
+<%= f.label :reference_1, "- 1:" %>
+<%= f.url_field :reference_1, placeholder: "入力必須項目" %>
+<br>
+<%= f.label :reference_2, "- 2:" %>
+<%= f.url_field :reference_2, placeholder: "入力必須項目" %>
+<br>
+<%= f.label :reference_3, "- 3:" %>
+<%= f.url_field :reference_3, placeholder: "入力必須項目" %>
+<br>
+<%= f.label :reference_4, "- 4:" %>
+<%= f.url_field :reference_4 %>
+<br>
+<%= f.label :reference_5, "- 5:" %>
+<%= f.url_field :reference_5 %>
+<br>
+<br>
+<%= f.label :title, "タイトル:" %>
+<%= f.text_field :title %>
+
+<br>
+
+<div id="headings">
+	<%= f.fields_for :headings do |heading| %>
+		<%= render "heading_fields", f: heading %>
+	<% end %>
+
+	<div id="links">
+		<%= link_to_add_association "add heading", f, :headings %>
+	</div>
+
+
+
+<%= f.submit "保存", class: "btn btn-success" %>
+<%= link_to "内容を破棄して戻る", writers_article_path(@article), class: "btn btn-default" %>
+<% end %>

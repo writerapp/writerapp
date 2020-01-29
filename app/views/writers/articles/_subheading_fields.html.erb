@@ -1,0 +1,13 @@
+<div class="nested-fields">
+	<%= f.label :title, "中見出し" %>
+	<%= f.text_field :title %>
+	<%= link_to_remove_association "remove subheading", f %>
+	<div class="subsubheadings">
+		<%= f.fields_for :subsubheadings do |subsubheading| %>
+		  <%= render "subsubheading_fields", f: subsubheading %>
+	  <% end %>
+		<div class="links">
+			<%= link_to_add_association "add subsubheading", f, :subsubheadings %>
+		</div>
+  </div>
+</div>

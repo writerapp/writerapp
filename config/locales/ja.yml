@@ -209,8 +209,8 @@ ja:
   enums:
     article:
       status:
-        edit_headings: 見出し作成中
-        apply_headings: 見出し申請中
+        edit_heading: 見出し作成中
+        apply_heading: 見出し申請中
         edit: 記事執筆中
         apply: 納品申請中
         complete: 納品完了
