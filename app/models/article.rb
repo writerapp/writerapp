@@ -7,4 +7,10 @@ class Article < ApplicationRecord
   enum status: {edit_heading: 0, apply_heading: 1, edit: 2, apply: 3, complete: 4}
   validates :title, length: { maximum: 35, message: 'は35文字以内にしてください' }
 
+
+  def url_check
+    if self.reference_1.present? and self.reference_2.present? and self.reference_3.present?
+    	return true
+    end
+  end
 end

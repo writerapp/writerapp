@@ -33,9 +33,24 @@ class Writers::ArticlesController < ApplicationController
   end
 
   def update
-    article = Article.find(params[:id])
-    article.update(article_params)
-    redirect_to writers_article_path(article.id)
+    @article = Article.find(params[:id])
+    if @article.update(article_params)
+      redirect_to writers_article_path(@article)
+    else
+      render 'edit_heading'
+    end
+  end
+
+  def apply_heading
+    @article = Article.find(params[:id])
+    if @article.url_check
+      @article.status = 1
+      @article.save
+      redirect_to writers_article_path(@article), notice: "見出しを申請しました"
+    else
+      flash.now[:alert] = "URLは3つ以上埋めてください"
+      render 'show'
+    end
   end
 
 
