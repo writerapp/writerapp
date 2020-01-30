@@ -1,2 +1,46 @@
-<h1>Writers::Articles#edit</h1>
-<p>Find me in app/views/writers/articles/edit.html.erb</p>
+<h1>記事本文編集ページ</h1>
+<p><%= current_writer.last_name %> <%= current_writer.first_name %>様</p>
+<%= @article.keyword_1 %>
+- <%= @article.keyword_2 %>
+<% if @article.keyword_3.present? %>
+- <%= @article.keyword_3 %>
+<% end %>
+
+
+<br>
+参考URL:
+<br>-1: <%= @article.reference_1 %>
+<br>-1: <%= @article.reference_2 %>
+<br>-1: <%= @article.reference_3 %>
+<br>-1: <%= @article.reference_4 %>
+<br>-1: <%= @article.reference_5 %>
+<br>
+
+
+<div>
+	<%= form_for(@article, url: writers_article_path(@article)) do |f| %>
+		<h3>タイトル: <%= @article.title %></h3>
+
+<%= f.fields_for :headings do |f| %>
+<h4>- 大見出し：<%= f.object.title %></h4>
+<div><%= f.text_area :body, style: "width: 80%; height: 100px; margin-bottom: 20px;" %></div>
+
+<%= f.fields_for :subheadings do |f| %>
+<h5>------ 中見出し：<%= f.object.title %></h5>
+<%= f.text_area :body, style: "width: 80%; height: 100px; margin-bottom: 20px;" %>
+
+<%= f.fields_for :subsubheadings do |f| %>
+<h6>------------ 小見出し：<%= f.object.title %></h6>
+<%= f.text_area :body, style: "width: 80%; height: 100px; margin-bottom: 20px;" %>
+
+<% end %>
+<% end %>
+<% end %>
+
+
+	<%= f.submit "保存", class: "btn btn-success" %>
+	<%= link_to "内容を破棄して戻る", writers_article_path(@article), class: "btn btn-default" %>
+
+
+	<% end %>
+</div>

@@ -53,9 +53,9 @@ class Writers::ArticlesController < ApplicationController
     end
   end
 
-
-  #def edit
-  #end
+  def edit
+    @article = Article.find(params[:id])
+  end
 
 
   private
