@@ -5,5 +5,4 @@ class Heading < ApplicationRecord
 
   validates :title, length: { maximum: 35, message: 'は35文字以内にしてください' }
 
-
 end

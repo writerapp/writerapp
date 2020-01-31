@@ -43,12 +43,11 @@ class Writers::ArticlesController < ApplicationController
 
   def apply_heading
     @article = Article.find(params[:id])
-    if @article.url_check
+    if @article.valid?(:apply_heading)
       @article.status = 1
       @article.save
       redirect_to writers_article_path(@article), notice: "見出しを申請しました"
     else
-      flash.now[:alert] = "URLは3つ以上埋めてください"
       render 'show'
     end
   end
@@ -57,6 +56,16 @@ class Writers::ArticlesController < ApplicationController
     @article = Article.find(params[:id])
   end
 
+  def apply
+    @article = Article.find(params[:id])
+    if @article.valid? (:apply)
+      @article.status = 3
+      @article.save
+      redirect_to writers_article_path(@article), notice: "記事を申請しました"
+    else
+      render 'show'
+    end
+  end
 
   private
   def article_params
