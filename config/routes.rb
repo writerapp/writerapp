@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # 記事/キーワード機能
   namespace :writers do
     get 'articles/:id/edit', to: 'articles#edit', as: 'edit_article'
-    get 'articles/keywords', to: 'articles#keywords', as: 'keywords'
+    get 'articles/keyword', to: 'articles#keyword', as: 'keyword'
     patch 'articles/:id/apply', to: 'articles#apply', as: 'apply_article'
     get 'articles/:id/heading/edit', to: 'articles#edit_heading', as: 'edit_heading'
     patch 'articles/:id/heading', to: 'articles#update_heading', as: 'heading'

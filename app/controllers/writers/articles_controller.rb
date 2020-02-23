@@ -1,7 +1,7 @@
 class Writers::ArticlesController < ApplicationController
   before_action :authenticate_writer!
 
-  #def keywords
+  #def keyword
   #end
 
   def create
@@ -30,6 +30,10 @@ class Writers::ArticlesController < ApplicationController
 
   def edit_heading
     @article = Article.find(params[:id])
+    unless @article.status == 'edit_heading'
+      flash.now[:danger] = 'この記事の見出しは編集できません'
+      render 'show'
+    end
   end
 
   def update
@@ -54,6 +58,10 @@ class Writers::ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
+    unless @article.status == 'edit'
+      flash.now[:danger] = 'この記事の本文は編集できません'
+      render 'show'
+    end
   end
 
   def apply
